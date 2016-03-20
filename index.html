@@ -64,11 +64,10 @@
 </form>
 
 </div>
-<<<<<<< HEAD
 
 
-<div>
-<table>
+<div id="tableDiv">
+<!-- <table>
 	<tbody>
 		<tr>
 			<td class="t">
@@ -130,7 +129,7 @@
 	</tbody>
 	</table>
 		<button class="btn btn-default" onclick="alert($('#O_1-1').val())">Kuy</button>
-	<div>
+	<div> -->
 	
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -153,61 +152,63 @@ function setData(){
 }
 
 
+function tableCreate(Machines, Jobs) {
 
 
+	$("#myTable").remove();
+    var body = document.body,
+            tbl = document.createElement('table');
+   	tbl.id = "myTable"
+    for (var i = 0; i < Jobs; i++) {
+        var tr = tbl.insertRow();
+        for (var j = 0; j < Machines; j++) {
+            var td = tr.insertCell();
+            // Following adds a text field:
+            var input1 = document.createElement("input");
+            input1.type = "text";
+            input1.name = 'm-' + j + "-" + i;
+            input1.size = '1';
+            input1.maxLength = '2';
+            input1.class = "inputTable";
 
-</script>
+            var input2 = document.createElement("input");
+            input2.type = "text";
+            input2.name = 't-' + j + "-" + i;
+            input2.size = '1';
+            input2.maxLength = '2';
+            input2.class = "inputTable";
+            // input.className = "css-class-name"; // set the CSS class
+            td.appendChild(input1); // put it into the DOM
+            td.appendChild(input2); // put it into the DOM
 
-
-
-=======
-<script>
-    function tableCreate(Machines, Jobs) {
-        var body = document.body,
-                tbl = document.createElement('table');
-        tbl.style.width = '100px';
-        // tbl.style.border = '1px solid black';
-
-        for (var i = 0; i < Jobs; i++) {
-            var tr = tbl.insertRow();
-            for (var j = 0; j < Machines; j++) {
-                var td = tr.insertCell();
-                // Following adds a text field:
-                var input1 = document.createElement("input");
-                input1.type = "text";
-                input1.name = 'wPref-' + j + "-" + i;
-                input1.size = '1';
-                input1.maxLength = '2';
-
-                var input2 = document.createElement("input");
-                input2.type = "text";
-                input2.name = 'mPref-' + j + "-" + i;
-                input2.size = '1';
-                input2.maxLength = '2';
-                // input.className = "css-class-name"; // set the CSS class
-                td.appendChild(input1); // put it into the DOM
-                td.appendChild(input2); // put it into the DOM
-
-                // td.appendChild(document.createTextNode('Cell'));
-                td.style.border = '1px solid black';
-            }
+            // td.appendChild(document.createTextNode('Cell'));
+            td.style.border = '1px solid black';
         }
-        body.appendChild(tbl);
     }
+    body.appendChild(tbl);
+}
 
 
-    function getPlayers() {
-        var Machines = document.getElementById('Machines').value;
-        var Jobs = document.getElementById('Jobs').value;
-        tableCreate(Machines, Jobs);
+function getPlayers() {
+    var Machines = document.getElementById('Machines').value;
+    var Jobs = document.getElementById('Jobs').value;
+    tableCreate(Machines, Jobs);
 
-    }
+}
+
 
 </script>
->>>>>>> 2fe30b30b2964961309d56a3f2e037672c521052
+
+
+
 </body>
 
 <style>
+.inputTable{
+	width: 50%;
+
+}
+
 .t{
 	border : 1px solid black;
 	text-align: center;
