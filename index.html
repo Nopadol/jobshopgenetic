@@ -18,7 +18,9 @@
 
     <![endif]-->
     <style>
-        table, td {
+        table, td, tr {
+            margin-left: 10%;
+            margin-top:  5%;
             border: 1px solid black;
         }
     </style>
@@ -42,15 +44,11 @@
         </div>
 </nav>
 <body>
+<div style ="margin-left: 10%">
 <form name="pyform" method=="POST" action="/cgi-bin/da_form.py" style='font-family:Arial,sans-serif;font-size:12px'>
     Number of Machines: &nbsp; &nbsp; &nbsp;
     <input id="Machines" name="Machines" type="number" value="0" min="0">
-    <!--<select name='men' id='men'>-->
-        <!--<option value='1'>1</option>-->
-        <!--<option value='2'>2</option>-->
-        <!--<option value='3'>3</option>-->
-        <!--<option value='4'>4</option>-->
-    <!--</select>-->
+
     <br>
 
     <br>
@@ -73,29 +71,42 @@
         tbl.style.width = '100px';
         // tbl.style.border = '1px solid black';
 
-        for (var i = 0; i < Jobs; i++) {
+        for (var i = 0; i <= Jobs; i++) {
             var tr = tbl.insertRow();
-            for (var j = 0; j < Machines; j++) {
-                var td = tr.insertCell();
-                // Following adds a text field:
-                var input1 = document.createElement("input");
-                input1.type = "text";
-                input1.name = 'wPref-' + j + "-" + i;
-                input1.size = '1';
-                input1.maxLength = '2';
-
-                var input2 = document.createElement("input");
-                input2.type = "text";
-                input2.name = 'mPref-' + j + "-" + i;
-                input2.size = '1';
-                input2.maxLength = '2';
-                // input.className = "css-class-name"; // set the CSS class
-                td.appendChild(input1); // put it into the DOM
-                td.appendChild(input2); // put it into the DOM
-
-                // td.appendChild(document.createTextNode('Cell'));
-                td.style.border = '1px solid black';
+            if (i == 0) {
+                var t = document.createTextNode("///");
+                tr.appendChild(t);
+            } else {
+                var t = document.createTextNode("Jobs" + (i));
+                tr.appendChild(t);
             }
+                for (var j = 0; j < Machines; j++) {
+                    var td = tr.insertCell();
+                    // Following adds a text field:
+                    if (i == 0) {
+                        var tt = document.createTextNode("Machines" + (j + 1));
+                        td.appendChild(tt);
+                    }else{
+                    var input1 = document.createElement("input");
+                    input1.type = "text";
+                    input1.name = 'wPref-' + j + "-" + i;
+                    input1.size = '1';
+                    input1.maxLength = '2';
+
+                    var input2 = document.createElement("input");
+                    input2.type = "text";
+                    input2.name = 'mPref-' + j + "-" + i;
+                    input2.size = '1';
+                    input2.maxLength = '2';
+                    // input.className = "css-class-name"; // set the CSS class
+                    td.appendChild(input1); // put it into the DOM
+                    td.appendChild(input2); // put it into the DOM
+
+                    // td.appendChild(document.createTextNode('Cell'));
+                    td.style.border = '1px solid black';
+                    }
+                }
+
         }
         body.appendChild(tbl);
     }
